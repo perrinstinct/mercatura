@@ -47,6 +47,7 @@ cd backend
 cd frontend
 npm install
 npm start
+```
 
 🧪 Tests
 	•	Backend: JUnit 5 + Mockito + Testcontainers
