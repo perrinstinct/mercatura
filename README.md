@@ -1,4 +1,4 @@
-# Mercatura 🛒
+# Mercatura 🛒 [![CI](https://github.com/perrinstinct/mercatura/actions/workflows/ci.yml/badge.svg)](https://github.com/perrinstinct/mercatura/actions/workflows/ci.yml)
 
 A full-stack **e-commerce MVP** built with **Spring Boot (Java)** and **Angular**, designed as a portfolio project to showcase modern software engineering skills.
 
