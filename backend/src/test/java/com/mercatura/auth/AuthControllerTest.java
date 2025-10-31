@@ -3,8 +3,7 @@ package com.mercatura.auth;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,21 @@ class AuthControllerTest {
                 .content("{\"email\": \"test@mail.com\", \"password\": \"123456\"}"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.token").value("fake-token"))
+        .andExpect(jsonPath("$.email").value("test@mail.com"));
+  }
+
+  @Test
+  void shouldLoginUser() throws Exception {
+    org.mockito.Mockito.when(authService.login(org.mockito.ArgumentMatchers.any()))
+        .thenReturn(new AuthResponse("fake-token", 1L, "test@mail.com", "USER"));
+
+    mockMvc
+        .perform(
+            post("/api/auth/login")
+                .contentType(org.springframework.http.MediaType.APPLICATION_JSON)
+                .content("{\"email\":\"test@mail.com\",\"password\":\"123456\"}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.accessToken").value("fake-token"))
         .andExpect(jsonPath("$.email").value("test@mail.com"));
   }
 }
