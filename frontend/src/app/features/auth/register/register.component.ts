@@ -92,7 +92,7 @@ export class RegisterComponent {
     const { email, password } = this.form.value as { email: string; password: string };
 
     this.auth.register({ email, password }).subscribe({
-      next: (res) => {
+      next: () => {
         this.snack.open('Account created! You can now log in.', 'OK', { duration: 3000 });
         this.router.navigateByUrl('/login'); // route à créer plus tard
       },
