@@ -14,6 +14,11 @@ export interface AuthResponse {
   role: string;
 }
 
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
@@ -22,5 +27,9 @@ export class AuthService {
 
   register(req: RegisterRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/register`, req);
+  }
+
+  login(req: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.baseUrl}/login`, req);
   }
 }
